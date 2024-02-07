@@ -1,6 +1,7 @@
 #include <iostream>
 #include <WS2tcpip.h>
 #include <string>
+#include "../MSFS Flight Assistant/dataStruct.h"
 
 #pragma comment (lib, "ws2_32.lib")
 
@@ -68,6 +69,8 @@ void main()
 	// While loop: accept and echo message back to client
 	char buf[4096];
 
+	simData currentSimData;
+
 	while (true)
 	{
 		ZeroMemory(buf, 4096);
@@ -85,11 +88,19 @@ void main()
 			cout << "Client disconnected " << endl;
 			break;
 		}
+		decideStruct* determineStruct = (decideStruct*)&buf;
 
-		cout << string(buf, 0, bytesReceived) << endl;
+		//cout << string(buf, 0, bytesReceived) << endl;
+		cout << char(determineStruct->flag) << endl;
 
-		// Echo message back to client
-		send(clientSocket, buf, bytesReceived + 1, 0);
+		if (determineStruct->flag == 0) {
+			sendStruct* demoData = (sendStruct*)&buf;
+			currentSimData = demoData->data;
+		}
+
+		else if (determineStruct->flag == 1) {
+			send(clientSocket, (const char*)&currentSimData, sizeof(currentSimData), 0);
+		}
 
 	}
 

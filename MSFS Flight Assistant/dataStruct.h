@@ -18,3 +18,7 @@ struct sendStruct {
 struct requestStruct {
 	const char flag = 1;
 };
+
+struct decideStruct {
+	char flag;
+};
