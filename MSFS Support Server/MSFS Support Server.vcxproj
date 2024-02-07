@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c4d48c3e-a122-4598-8e06-117e1572751d}</ProjectGuid>
-    <RootNamespace>MSFSFlightAssistant</RootNamespace>
+    <ProjectGuid>{b9352bdd-6afe-4f4a-94c1-49b5fed705b3}</ProjectGuid>
+    <RootNamespace>MSFSSupportServer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,12 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MSFS Flight Assistant.cpp" />
-    <ClCompile Include="serverConnection.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="dataStruct.h" />
-    <ClInclude Include="serverConnection.h" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
