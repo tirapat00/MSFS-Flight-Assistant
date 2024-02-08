@@ -134,7 +134,6 @@
     <ClCompile Include="connectionHandler.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="dataHandler.cpp" />
-    <ClCompile Include="Flags.cpp" />
     <ClCompile Include="flightChecklist.cpp" />
     <ClCompile Include="MSFS Program.cpp" />
     <ClCompile Include="serverConnection.cpp" />
@@ -143,7 +142,6 @@
     <ClInclude Include="connectionHandler.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="dataHandler.h" />
-    <ClInclude Include="Flags.h" />
     <ClInclude Include="flightChecklist.h" />
     <ClInclude Include="handle.h" />
     <ClInclude Include="serverConnection.h" />

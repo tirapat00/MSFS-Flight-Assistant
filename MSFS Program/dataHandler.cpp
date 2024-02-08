@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include "SimConnect.h"
 #include "handle.h"
-#include "Flags.h"
 #include "../MSFS Flight Assistant/dataStruct.h"
 #include "serverConnection.h"
 
@@ -93,28 +92,6 @@ void CALLBACK DispatchProc1(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext
 }
 
 void handleEvent() {
-    if (getChecklistFlag == 0) {
-        if (GetKeyState('C') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
-        {
-            std::cout << "Set Checklist Flag" << std::endl;
-            setChecklistFlagPositive();
-        }
-    }
-
-    if (getFlightFlag == 0) {
-        if (GetKeyState('F') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
-        {
-            std::cout << "Set Flight Flag" << std::endl;
-        }
-    }
-
-    if (getLandingFlag == 0) {
-        if (GetKeyState('L') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
-        {
-            std::cout << "Set Landing Flag" << std::endl;
-        }
-    }
-
     SimConnect_CallDispatch(handle, DispatchProc1, NULL);
     Sleep(1);
 }
