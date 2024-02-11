@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="MSFS Flight Assistant.cpp" />
     <ClCompile Include="serverConnection.cpp" />
+    <ClCompile Include="simMode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataStruct.h" />
     <ClInclude Include="serverConnection.h" />
+    <ClInclude Include="simMode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -135,7 +135,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="dataHandler.cpp" />
     <ClCompile Include="flightChecklist.cpp" />
-    <ClCompile Include="MSFS Program.cpp" />
+    <ClCompile Include="simConnectClient.cpp" />
     <ClCompile Include="serverConnection.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +145,7 @@
     <ClInclude Include="flightChecklist.h" />
     <ClInclude Include="handle.h" />
     <ClInclude Include="serverConnection.h" />
+    <ClInclude Include="simConnectClient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

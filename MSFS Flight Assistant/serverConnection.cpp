@@ -1,9 +1,13 @@
 #include <iostream>
 #include <string>
 #include <WS2tcpip.h>
+#include "dataStruct.h"
 #pragma comment(lib, "ws2_32.lib")
 
 using namespace std;
+SOCKET sock;
+char buf[4096];
+simData currentSimData;
 
 void connectToServer() {
 	string ipAddress = "127.0.0.1";			// IP Address of the server
@@ -20,7 +24,7 @@ void connectToServer() {
 	}
 
 	// Create socket
-	SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
+	sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock == INVALID_SOCKET)
 	{
 		cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
@@ -46,6 +50,15 @@ void connectToServer() {
 	std::cout << "Connected to Server!" << std::endl;
 }
 
-void sendToServer() {
 
+void requestDataFromServer() {
+	requestStruct packet;
+	send(sock, (const char*)&packet, sizeof(packet), 0);
+	recv(sock, buf, 4096, 0);
+	simData* demoData = (simData*)&buf;
+	currentSimData = *demoData;
+}
+
+simData getSimData() {
+	return currentSimData;
 }

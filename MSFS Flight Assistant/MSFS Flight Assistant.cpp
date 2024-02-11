@@ -3,8 +3,13 @@
 
 #include <iostream>
 #include "serverConnection.h"
+#include "simMode.h"
 
 int main()
 {
     connectToServer();
+    initSimMode();
+
+    return 0;
+
 }
