@@ -39,6 +39,14 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 		if (determineStruct->flag == 0) {
 			sendStruct* demoData = (sendStruct*)&buf;
 			currentSimData = demoData->data;
+			cout
+
+				<< "\rAltitude: " << currentSimData.altitude
+				<< " - Heading: " << currentSimData.heading
+				<< " - Speed(knots): " << currentSimData.speed
+				<< " - Vertical Speed: " << currentSimData.verticalSpeed
+
+				<< std::flush;
 		}
 
 		else if (determineStruct->flag == 1) {
