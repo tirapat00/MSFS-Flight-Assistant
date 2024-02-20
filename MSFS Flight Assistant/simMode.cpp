@@ -13,6 +13,8 @@ void initSimMode() {
 		std::cout
 
 			<< "\rAltitude: " << currentData.altitude
+			<< " - Latitude: " << currentData.latitude
+			<< " - Longitude: " << currentData.longitude
 			<< " - Heading: " << currentData.heading
 			<< " - Speed(knots): " << currentData.speed
 			<< " - Vertical Speed: " << currentData.verticalSpeed
