@@ -24,6 +24,9 @@
     <ClCompile Include="simMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="flightChecklist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="serverConnection.h">
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flightChecklist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
