@@ -49,7 +49,7 @@ void connectToServer(){
 		std::cout << "Connected to Server!" << std::endl;
 	}
 
-void sendToServer(double altitude, double latitude, double longitude, int32_t heading,int32_t speed, int32_t verticalSpeed) {
+void sendToServer(double altitude, double latitude, double longitude, int32_t heading,int32_t speed, int32_t verticalSpeed,int32_t RPM) {
 	simData demoData;
 	demoData.altitude = altitude;
 	demoData.latitude = latitude;
@@ -57,6 +57,7 @@ void sendToServer(double altitude, double latitude, double longitude, int32_t he
 	demoData.heading = heading;
 	demoData.speed = speed;
 	demoData.verticalSpeed = verticalSpeed;
+	demoData.RPM = RPM;
 
 	sendStruct packet;
 	packet.data = demoData;

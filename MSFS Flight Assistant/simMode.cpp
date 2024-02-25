@@ -18,6 +18,7 @@ void initSimMode() {
 			<< " - Heading: " << currentData.heading
 			<< " - Speed(knots): " << currentData.speed
 			<< " - Vertical Speed: " << currentData.verticalSpeed
+			<< " - RPM: " << currentData.RPM
 
 			<< std::flush;
 		Sleep(500);

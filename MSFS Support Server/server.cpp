@@ -47,6 +47,7 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 				<< " - Heading: " << currentSimData.heading
 				<< " - Speed(knots): " << currentSimData.speed
 				<< " - Vertical Speed: " << currentSimData.verticalSpeed
+				<< " - RPM: " << currentSimData.RPM
 
 				<< std::flush;
 		}
