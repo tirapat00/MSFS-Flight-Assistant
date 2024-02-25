@@ -8,8 +8,8 @@ struct simData {
 	double longitude;
 	int32_t heading;
 	int32_t speed;
+	double RPM;
 	int32_t verticalSpeed;
-	int32_t RPM;
 
 };
 

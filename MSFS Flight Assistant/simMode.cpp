@@ -6,7 +6,7 @@
 simData currentData;
 
 void initSimMode() {
-	while (!GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)*/) {
+	while (true) {
 		requestDataFromServer();
 		currentData = getSimData();
 
@@ -17,8 +17,8 @@ void initSimMode() {
 			<< " - Longitude: " << currentData.longitude
 			<< " - Heading: " << currentData.heading
 			<< " - Speed(knots): " << currentData.speed
-			<< " - Vertical Speed: " << currentData.verticalSpeed
 			<< " - RPM: " << currentData.RPM
+			<< " - Vertical Speed: " << currentData.verticalSpeed
 
 			<< std::flush;
 		Sleep(500);
