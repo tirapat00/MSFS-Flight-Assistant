@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="flags.cpp" />
     <ClCompile Include="flightChecklist.cpp" />
     <ClCompile Include="MSFS Flight Assistant.cpp" />
     <ClCompile Include="serverConnection.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataStruct.h" />
+    <ClInclude Include="flags.h" />
     <ClInclude Include="flightChecklist.h" />
     <ClInclude Include="serverConnection.h" />
     <ClInclude Include="simMode.h" />
