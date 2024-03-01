@@ -137,6 +137,7 @@ void startPreFlightInspection() {
 	preStartEngine();
 	startEngine();
 	taxi();
+	startTakeoff();
 }
 
 void startChecklist() {
