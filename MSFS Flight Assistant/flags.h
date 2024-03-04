@@ -1,6 +1,7 @@
 #pragma once
 
-bool flightChecklist;
 
 bool getFlightChecklist();
 void setFlightChecklistTrue();
+bool getLanding();
+void setLandingTrue();
