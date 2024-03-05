@@ -49,6 +49,7 @@ void connectToServer(){
 		std::cout << "Connected to Server!" << std::endl;
 	}
 
+//Send current data struct to Server
 void sendToServer(double altitude, double latitude, double longitude, int32_t heading,int32_t speed, double Rpm, int32_t verticalSpeed) {
 	simData demoData;
 	demoData.altitude = altitude;

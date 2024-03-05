@@ -10,6 +10,7 @@ using namespace std;
 
 simData currentSimData;
 
+//Start thread with this task for every client
 DWORD WINAPI handleEvents(LPVOID lpParam) {
 	cout << "Thread started" << endl;
 

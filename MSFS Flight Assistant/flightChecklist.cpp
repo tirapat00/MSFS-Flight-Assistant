@@ -168,15 +168,19 @@ void takeoff() {
 	while (!takeoff) {
 		requestDataFromServer();
 		checklistData = getSimData();
-		if (checklistData.RPM < 2500 && checklistData.speed < 75) {
+		if (checklistData.RPM < 2500 && checklistData.speed < 75 || checklistData.speed > 85) {
 			std::cout
 				<< "Throttle FULL OPEN\n"
 				<< "Climb Speed 75-85 MPH\n"
 				<< std::endl;
 			Sleep(1000);
 		} 
-		else if (checklistData.RPM > 2500 && checklistData.speed > 75) {
+		else if (checklistData.RPM > 2500 && checklistData.speed > 75 && checklistData.altitude < 1000) {
 			std::cout << "Hold Speed and RPM!\n" << std::endl;
+			Sleep(1000);
+		}
+		else if (checklistData.altitude > 1000) {
+			takeoff = true;
 		}
 	}
 }
