@@ -31,6 +31,28 @@ void initSimMode() {
 	}
 	startChecklist();
 
+	while (getFlight() == false) {
+		requestDataFromServer();
+		currentData = getSimData();
+
+		std::cout
+
+			<< "\rAltitude: " << currentData.altitude
+			<< " \n- Latitude: " << currentData.latitude
+			<< " \n- Longitude: " << currentData.longitude
+			<< " \n- Heading: " << currentData.heading
+			<< " \n- Speed(knots): " << currentData.speed
+			<< " \n- RPM: " << currentData.RPM
+			<< " \n- Vertical Speed: " << currentData.verticalSpeed
+
+			<< std::flush;
+		Sleep(500);
+		if (GetKeyState('F') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
+		{
+			setFlightTrue();
+		}
+	}
+
 	while (getLanding() == false) {
 		requestDataFromServer();
 		currentData = getSimData();

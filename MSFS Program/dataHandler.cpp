@@ -68,12 +68,12 @@ void CALLBACK DispatchProc1(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext
             std::cout
 
                 << "\rAltitude: " << pS->altitude
-                << " - Latitude: " << pS->latitude
-                << " - Longitude: " << pS->longitude
-                << " - Heading: " << pS->heading
-                << " - Speed(knots): " << pS->speed
-                << " - RPM: " << pS->RPM
-                << " - Vertical Speed: " << pS->vertical_speed
+                << " \n- Latitude: " << pS->latitude
+                << " \n- Longitude: " << pS->longitude
+                << " \n- Heading: " << pS->heading
+                << " \n- Speed(knots): " << pS->speed
+                << " \n- RPM: " << pS->RPM
+                << " \n- Vertical Speed: " << pS->vertical_speed
 
                 << std::flush;
             sendToServer(pS->altitude, pS->latitude, pS->longitude, pS->heading, pS->speed, pS->RPM, pS->vertical_speed);

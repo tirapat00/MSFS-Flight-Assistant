@@ -43,12 +43,12 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 			cout
 
 				<< "\rAltitude: " << currentSimData.altitude
-				<< " - Latitude: " << currentSimData.latitude
-				<< " - Longitude: " << currentSimData.longitude
-				<< " - Heading: " << currentSimData.heading
-				<< " - Speed(knots): " << currentSimData.speed
-				<< " - Vertical Speed: " << currentSimData.verticalSpeed
-				<< " - RPM: " << currentSimData.RPM
+				<< " \n- Latitude: " << currentSimData.latitude
+				<< " \n- Longitude: " << currentSimData.longitude
+				<< " \n- Heading: " << currentSimData.heading
+				<< " \n- Speed(knots): " << currentSimData.speed
+				<< " \n- RPM: " << currentSimData.RPM
+				<< " \n- Vertical Speed: " << currentSimData.verticalSpeed
 
 				<< std::flush;
 		}
