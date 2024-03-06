@@ -7,3 +7,5 @@ bool getLanding();
 void setLandingTrue();
 bool getFlight();
 void setFlightTrue();
+bool getExitFlight();
+void setExitFlightTrue();

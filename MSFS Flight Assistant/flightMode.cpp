@@ -2,15 +2,26 @@
 #include "Windows.h"
 #include "dataStruct.h"
 #include "serverConnection.h"
+#include "flags.h"
 
-void calculateFlightPath() {
+
+simData flightData;
+
+
+void calculateFlightPath(simData calcData) {
 
 }
 
-void calculateAirspace() {
-
+void calculateAirspace(simData calcData) {
+	if (calcData.latitude )
 }
 
 void startFlightMode() {
+	while (getExitFlight() == false) {
+		requestDataFromServer();
+		flightData = getSimData();
+		calculateAirspace(flightData);
+		calculateFlightPath(flightData);
 
+	}
 }
