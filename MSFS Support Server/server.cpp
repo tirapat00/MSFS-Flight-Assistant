@@ -10,6 +10,7 @@ using namespace std;
 
 simData currentSimData;
 
+//Start thread with this task for every client
 DWORD WINAPI handleEvents(LPVOID lpParam) {
 	cout << "Thread started" << endl;
 
@@ -42,9 +43,12 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 			cout
 
 				<< "\rAltitude: " << currentSimData.altitude
+				<< " - Latitude: " << currentSimData.latitude
+				<< " - Longitude: " << currentSimData.longitude
 				<< " - Heading: " << currentSimData.heading
 				<< " - Speed(knots): " << currentSimData.speed
 				<< " - Vertical Speed: " << currentSimData.verticalSpeed
+				<< " - RPM: " << currentSimData.RPM
 
 				<< std::flush;
 		}

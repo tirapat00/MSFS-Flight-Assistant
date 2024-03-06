@@ -19,8 +19,11 @@ static enum DATA_REQUEST_ID {
 //Structure that holds all data
 struct SimResponse {
     double altitude;
+    double latitude;
+    double longitude;
     int32_t heading;
     int32_t speed;
+    double RPM;
     int32_t vertical_speed;
 };
 
@@ -32,8 +35,11 @@ void defineData() {
     //#IMPORTANT: the request order must correspond with the declaration of the response struct
     //SimConnect_AddToDataDefinition takes : HANDLE, enum DEFINITION_ID, const char* UNIT, DATATYPE, Default is FLOAT64
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Indicated Altitude", "feet", SIMCONNECT_DATATYPE_FLOAT64);
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Plane Latitude", "degrees", SIMCONNECT_DATATYPE_FLOAT64);
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Plane Longitude", "degrees", SIMCONNECT_DATATYPE_FLOAT64);
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Heading Indicator", "degrees", SIMCONNECT_DATATYPE_INT32);
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Airspeed Indicated", "knots", SIMCONNECT_DATATYPE_INT32);
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GENERAL ENG RPM:1", "rpm", SIMCONNECT_DATATYPE_FLOAT64);
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Vertical Speed", "Feet per second", SIMCONNECT_DATATYPE_INT32);
 }
 
@@ -62,13 +68,15 @@ void CALLBACK DispatchProc1(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext
             std::cout
 
                 << "\rAltitude: " << pS->altitude
+                << " - Latitude: " << pS->latitude
+                << " - Longitude: " << pS->longitude
                 << " - Heading: " << pS->heading
                 << " - Speed(knots): " << pS->speed
+                << " - RPM: " << pS->RPM
                 << " - Vertical Speed: " << pS->vertical_speed
 
                 << std::flush;
-            sendToServer(pS->altitude, pS->heading, pS->speed, pS->vertical_speed);
-
+            sendToServer(pS->altitude, pS->latitude, pS->longitude, pS->heading, pS->speed, pS->RPM, pS->vertical_speed);
             break;
         }
 
