@@ -107,7 +107,7 @@ void taxi() {
 		checklistData = getSimData();
 		if (checklistData.speed == 0) {
 			std::cout << "Gain Speed! \n" << std::endl;
-			Sleep(5000);
+			Sleep(2000);
 		}
 		else if (checklistData.speed > 0) {
 			std::cout << "BRAKE!\n" << std::endl;
