@@ -6,6 +6,7 @@
 
 
 simData flightData;
+char airClass;
 
 
 void calculateFlightPath(simData calcData) {
@@ -13,15 +14,16 @@ void calculateFlightPath(simData calcData) {
 }
 
 void calculateAirspace(simData calcData) {
-	if (calcData.latitude )
-}
-
-void startFlightMode() {
-	while (getExitFlight() == false) {
-		requestDataFromServer();
-		flightData = getSimData();
-		calculateAirspace(flightData);
-		calculateFlightPath(flightData);
-
+	if (calcData.latitude < 29.0657 && calcData.latitude > 29.0010 && calcData.longitude > -81.0061 && calcData.longitude < 80.5329 && calcData.altitude < 1200) {
+		airClass = 'D';
+		std::cout << "\nCurrent Air Class " << airClass << std::endl;
+	}
+	else if (calcData.latitude < 29.0657 && calcData.latitude > 29.0010 && calcData.longitude > -81.0061 && calcData.longitude < 80.5329 && calcData.altitude > 1200) {
+		airClass = 'C';
+		std::cout << "\nCurrent Air Class " << airClass << std::endl;
+	}
+	else {
+		airClass = 'E';
+		std::cout << "\nCurrent Air Class " << airClass << std::endl;
 	}
 }

@@ -45,6 +45,7 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 				<< "\rAltitude: " << currentSimData.altitude
 				<< " \n- Latitude: " << currentSimData.latitude
 				<< " \n- Longitude: " << currentSimData.longitude
+				<< " \n- Bearing to Waypoint: " << currentSimData.bearing
 				<< " \n- Heading: " << currentSimData.heading
 				<< " \n- Speed(knots): " << currentSimData.speed
 				<< " \n- RPM: " << currentSimData.RPM
