@@ -13,6 +13,7 @@ void initSimMode() {
 	while (getFlightChecklist() == false) {
 		requestDataFromServer();
 		calculateAirspace(currentData);
+		calculateFlightPath(currentData);
 
 		currentData = getSimData();
 
@@ -40,6 +41,7 @@ void initSimMode() {
 		requestDataFromServer();
 		currentData = getSimData();
 		calculateAirspace(currentData);
+		calculateFlightPath(currentData);
 
 		std::cout
 
@@ -60,4 +62,6 @@ void initSimMode() {
 		}
 	}
 	startLanding();
+	std::cout << "\n THANK YOU FOR USING OUR PILOT SUPPORT DEVICE" << std::endl;
+	Sleep(20000);
 }
