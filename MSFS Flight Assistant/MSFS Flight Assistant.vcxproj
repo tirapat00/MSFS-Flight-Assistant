@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="commWithPi.cpp" />
     <ClCompile Include="flags.cpp" />
     <ClCompile Include="flightChecklist.cpp" />
     <ClCompile Include="flightMode.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="simMode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calcStruct.h" />
     <ClInclude Include="dataStruct.h" />
     <ClInclude Include="flags.h" />
     <ClInclude Include="flightChecklist.h" />
