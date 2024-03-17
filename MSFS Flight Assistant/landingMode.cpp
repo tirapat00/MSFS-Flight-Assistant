@@ -3,6 +3,7 @@
 #include "dataStruct.h"
 #include "serverConnection.h"
 #include "flags.h"
+#include "calcStruct.h"
 
 simData landingData;
 
@@ -25,6 +26,7 @@ void beforeLanding() {
 		std::cout << "\n Flaps DOWN" << std::endl;
 	}
 	Sleep(5000);
+	increaseProgress();
 }
 
 void landing() {
@@ -32,14 +34,13 @@ void landing() {
 	while (!landing) {
 		requestDataFromServer();
 		landingData = getSimData();
-		if (landingData.speed < 70) {
+		if (landingData.speed < 70 || landingData.speed > 80) {
 			std::cout << "\n Bring Speed between 70-80 MPH" << std::endl;
-		}
-		else if (landingData.speed > 80) {
-			std::cout << "\n Bring Speed between 70-80 MPH" << std::endl;
+			setProgress(26);
 		}
 		else if (landingData.speed > 70 && landingData.speed < 80) {
 			std::cout << "\n Hold speed" << std::endl;
+			setProgress(27);
 		}
 		std::cout
 			<< "\n Wing Flaps AS DESIRED"
@@ -52,6 +53,7 @@ void landing() {
 		}
 		Sleep(1000);
 	}
+	setProgress(28);
 }
 
 void afterLanding() {
@@ -61,6 +63,8 @@ void afterLanding() {
 		<< "\n Transponder STANDBY"
 		<< "\n Lights AS REQUIRED"
 		<< std::endl;
+	Sleep(5000);
+	increaseProgress();
 }
 
 void shutdown() {
@@ -72,10 +76,12 @@ void shutdown() {
 		<< std::endl;
 	if (landingData.RPM > 1000) {
 		std::cout << "\n Bring RPM under 1000 RPM" << std::endl;
+		setProgress(30);
 		Sleep(5000);
 	}
 	else if (landingData.RPM < 1000) {
 		std::cout << "\n Hold RPM under 1000" << std::endl;
+		setProgress(31);
 		Sleep(5000);
 	}
 	std::cout
@@ -90,9 +96,11 @@ void shutdown() {
 		landingData = getSimData();
 		if (landingData.RPM > 0) {
 			std::cout << "Master Switch OFF" << std::endl;
+			setProgress(32);
 			Sleep(3000);
 		}
 		else if (landingData.RPM == 0) {
+			setProgress(33);
 			master = true;
 		}
 	}

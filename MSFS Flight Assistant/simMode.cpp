@@ -6,6 +6,7 @@
 #include "flightChecklist.h"
 #include "flightMode.h"
 #include "landingMode.h"
+#include "calcStruct.h"
 
 simData currentData;
 
@@ -32,6 +33,7 @@ void initSimMode() {
 		Sleep(500);
 		if (GetKeyState('C') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
 		{
+			increaseProgress();
 			setFlightChecklistTrue();
 		}
 	}
@@ -59,9 +61,11 @@ void initSimMode() {
 		if (GetKeyState('L') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
 		{
 			setLandingTrue();
+			increaseProgress();
 		}
 	}
 	startLanding();
+	setProgress(34);
 	std::cout << "\n THANK YOU FOR USING OUR PILOT SUPPORT DEVICE" << std::endl;
 	Sleep(20000);
 }
