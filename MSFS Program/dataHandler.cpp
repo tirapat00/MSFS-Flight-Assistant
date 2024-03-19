@@ -21,10 +21,11 @@ struct SimResponse {
     double altitude;
     double latitude;
     double longitude;
-    int32_t heading;
-    int32_t speed;
+    double bearing;
+    double heading;
+    double speed;
     double RPM;
-    int32_t vertical_speed;
+    double vertical_speed;
 };
 
 int quit = 0; //0 = keep running - 1 = Exit App
@@ -34,13 +35,14 @@ void defineData() {
     HRESULT hR;
     //#IMPORTANT: the request order must correspond with the declaration of the response struct
     //SimConnect_AddToDataDefinition takes : HANDLE, enum DEFINITION_ID, const char* UNIT, DATATYPE, Default is FLOAT64
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Indicated Altitude", "feet", SIMCONNECT_DATATYPE_FLOAT64);
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Plane Latitude", "degrees", SIMCONNECT_DATATYPE_FLOAT64);
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Plane Longitude", "degrees", SIMCONNECT_DATATYPE_FLOAT64);
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Heading Indicator", "degrees", SIMCONNECT_DATATYPE_INT32);
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Airspeed Indicated", "knots", SIMCONNECT_DATATYPE_INT32);
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GENERAL ENG RPM:1", "rpm", SIMCONNECT_DATATYPE_FLOAT64);
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "Vertical Speed", "Feet per second", SIMCONNECT_DATATYPE_INT32);
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "INDICATED ALTITUDE", "feet");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "PLANE LATITUDE", "degrees");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "PLANE LONGITUDE", "degrees");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GPS WP BEARING", "degrees");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "HEADING INDICATOR", "degrees");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "AIRSPEED INDICATED", "knots");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GENERAL ENG RPM:1", "rpm");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "VERTICAL SPEED", "Feet per second");
 }
 
 void requestData() {
@@ -68,15 +70,16 @@ void CALLBACK DispatchProc1(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext
             std::cout
 
                 << "\rAltitude: " << pS->altitude
-                << " - Latitude: " << pS->latitude
-                << " - Longitude: " << pS->longitude
-                << " - Heading: " << pS->heading
-                << " - Speed(knots): " << pS->speed
-                << " - RPM: " << pS->RPM
-                << " - Vertical Speed: " << pS->vertical_speed
+                << " \n- Latitude: " << pS->latitude
+                << " \n- Longitude: " << pS->longitude
+                << " \n- Bearing to Waypoint: " << pS->bearing
+                << " \n- Heading: " << pS->heading
+                << " \n- Speed(knots): " << pS->speed
+                << " \n- RPM: " << pS->RPM
+                << " \n- Vertical Speed: " << pS->vertical_speed
 
                 << std::flush;
-            sendToServer(pS->altitude, pS->latitude, pS->longitude, pS->heading, pS->speed, pS->RPM, pS->vertical_speed);
+            sendToServer(pS->altitude, pS->latitude, pS->longitude, pS->bearing, pS->heading, pS->speed, pS->RPM, pS->vertical_speed);
             break;
         }
 

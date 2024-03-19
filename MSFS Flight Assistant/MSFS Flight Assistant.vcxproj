@@ -127,18 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="calcStruct.cpp" />
+    <ClCompile Include="commWithPi.cpp" />
     <ClCompile Include="flags.cpp" />
     <ClCompile Include="flightChecklist.cpp" />
     <ClCompile Include="flightMode.cpp" />
+    <ClCompile Include="landingMode.cpp" />
     <ClCompile Include="MSFS Flight Assistant.cpp" />
     <ClCompile Include="serverConnection.cpp" />
     <ClCompile Include="simMode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calcStruct.h" />
+    <ClInclude Include="commWithPi.h" />
     <ClInclude Include="dataStruct.h" />
     <ClInclude Include="flags.h" />
     <ClInclude Include="flightChecklist.h" />
     <ClInclude Include="flightMode.h" />
+    <ClInclude Include="landingMode.h" />
     <ClInclude Include="serverConnection.h" />
     <ClInclude Include="simMode.h" />
   </ItemGroup>

@@ -1,17 +1,14 @@
 #include <iostream>
 #include <WS2tcpip.h>
 #include <string>
-#include "../MSFS Flight Assistant/dataStruct.h"
+#include "calcStruct.h"
 
 #pragma comment (lib, "ws2_32.lib")
 
 using namespace std;
 
-
-simData currentSimData;
-
 //Start thread with this task for every client
-DWORD WINAPI handleEvents(LPVOID lpParam) {
+DWORD WINAPI commWithPi(LPVOID lpParam) {
 	cout << "Thread started" << endl;
 
 	SOCKET currentClient = (SOCKET)lpParam;
@@ -21,6 +18,9 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 	char sendData[4096];
 
 	while (true) {
+
+		int currentSystemStep = getProgress();
+
 		int bytesReceived = recv(currentClient, buf, 4096, 0);
 		if (bytesReceived == SOCKET_ERROR)
 		{
@@ -33,36 +33,15 @@ DWORD WINAPI handleEvents(LPVOID lpParam) {
 			cout << "Client disconnected " << endl;
 			return 0;
 		}
-		decideStruct* determineStruct = (decideStruct*)&buf;
 
-		cout << char(determineStruct->flag) << endl;
-
-		if (determineStruct->flag == 0) {
-			sendStruct* demoData = (sendStruct*)&buf;
-			currentSimData = demoData->data;
-			cout
-
-				<< "\rAltitude: " << currentSimData.altitude
-				<< " \n- Latitude: " << currentSimData.latitude
-				<< " \n- Longitude: " << currentSimData.longitude
-				<< " \n- Bearing to Waypoint: " << currentSimData.bearing
-				<< " \n- Heading: " << currentSimData.heading
-				<< " \n- Speed(knots): " << currentSimData.speed
-				<< " \n- RPM: " << currentSimData.RPM
-				<< " \n- Vertical Speed: " << currentSimData.verticalSpeed
-
-				<< std::flush;
-		}
-
-		else if (determineStruct->flag == 1) {
-			send(currentClient, (const char*)&currentSimData, sizeof(currentSimData), 0);
-		}
+		send(currentClient, (const char*)&currentSystemStep, sizeof(currentSystemStep), 0);
+		Sleep(1000);
 	}
 }
 
 
-int main()
-{
+DWORD WINAPI startPiServer(LPVOID lpParam) {
+
 	//master Socket
 	SOCKET sock;
 
@@ -88,7 +67,7 @@ int main()
 
 	// Bind the ip address and port to a socket
 	server.sin_family = AF_INET;
-	server.sin_port = htons(54000);
+	server.sin_port = htons(55000);
 	server.sin_addr.S_un.S_addr = INADDR_ANY; // Could also use inet_pton .... 
 
 	if (bind(sock, (sockaddr*)&server, sizeof(server)) != 0) {
@@ -113,7 +92,7 @@ int main()
 		clientSocket = accept(sock, (struct sockaddr*)&client, &clientSize);
 		cout << "Client connected!" << endl;
 
-		CreateThread(NULL, 0, handleEvents, (LPVOID)clientSocket, 0, &thread);
+		CreateThread(NULL, 0, commWithPi, (LPVOID)clientSocket, 0, &thread);
 	}
 
 	// Close the socket

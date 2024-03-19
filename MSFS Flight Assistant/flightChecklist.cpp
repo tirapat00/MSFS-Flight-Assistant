@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "dataStruct.h"
 #include "serverConnection.h"
+#include "calcStruct.h"
 
 simData checklistData;
 
@@ -22,6 +23,7 @@ void cabin() {
 
 		<< std :: endl;
 	Sleep(5000);
+	increaseProgress();
 }
 
 void tailSection() {
@@ -33,11 +35,13 @@ void tailSection() {
 		<< std::endl;
 
 	Sleep(5000);
+	increaseProgress();
 }
 
 void rightWing() {
 	std::cout << "right Wing CHECK\n" << std::endl;
 	Sleep(5000);
+	increaseProgress();
 }
 
 void nose() {
@@ -48,11 +52,13 @@ void nose() {
 void leftWing() {
 	std::cout << "left Wing CHECK\n" << std::endl;
 	Sleep(5000);
+	increaseProgress();
 }
 
 void preStartEngine() {
 	std::cout << "preStart Engine CHECK\n" << std::endl;
 	Sleep(5000);
+	increaseProgress();
 }
 
 void startEngine() {
@@ -80,17 +86,23 @@ void startEngine() {
 				engineWarmUpSuccessful = true;
 			}
 			std::cout << "Hold RPM!\n" << checklistData.RPM << std::endl;
+			setProgress(7);
 			Sleep(5000);
+			
 		}
 		else if (checklistData.RPM < 800) {
 			engineWarmUpTimer = 0;
 			std::cout << "Engine RPM too low must be between 800-1200!\n" << std::endl;
+			setProgress(8);
 			Sleep(5000);
+			
 		}
 		else if (checklistData.RPM > 1200) {
 			engineWarmUpTimer = 0;
 			std::cout << "Engine RPM too high must be between 800-1200!\n" << std::endl;
+			setProgress(9);
 			Sleep(5000);
+			
 		}
 	}
 	std::cout
@@ -107,12 +119,15 @@ void taxi() {
 		checklistData = getSimData();
 		if (checklistData.speed == 0) {
 			std::cout << "Gain Speed! \n" << std::endl;
-			Sleep(5000);
+			setProgress(10);
+			Sleep(2000);
+			
 		}
 		else if (checklistData.speed > 0) {
+			setProgress(11);
 			std::cout << "BRAKE!\n" << std::endl;
 			int brakeCheckSpeed = checklistData.speed;
-			Sleep(5000);
+			Sleep(6000);
 			requestDataFromServer();
 			checklistData = getSimData();
 			int brakeCheckSpeed2 = checklistData.speed;
@@ -122,6 +137,7 @@ void taxi() {
 		}
 	}
 	Sleep(5000);
+	increaseProgress();
 }
 
 void preTakeoff() {
@@ -145,6 +161,7 @@ void preTakeoff() {
 			}
 			else {
 				std::cout << "Bring RPM between 1700 - 1800\n" << std::endl;
+				setProgress(13);
 			}
 		}
 		std::cout
@@ -157,6 +174,8 @@ void preTakeoff() {
 			<< "Lights AS DESIRED\n"
 			<< "Brakes RELEASE\n"
 			<< std::endl;
+		Sleep(5000);
+		increaseProgress();
 }
 
 void takeoff() {
@@ -173,14 +192,17 @@ void takeoff() {
 				<< "Throttle FULL OPEN\n"
 				<< "Climb Speed 75-85 MPH\n"
 				<< std::endl;
+			setProgress(15);
 			Sleep(1000);
 		} 
 		else if (checklistData.RPM > 2500 && checklistData.speed > 75 && checklistData.altitude < 1000) {
 			std::cout << "Hold Speed and RPM!\n" << std::endl;
+			setProgress(16);
 			Sleep(1000);
 		}
 		else if (checklistData.altitude > 1000) {
 			takeoff = true;
+			setProgress(17);
 		}
 	}
 }
@@ -192,23 +214,28 @@ void climb() {
 		checklistData = getSimData();
 		if (checklistData.speed < 80 && checklistData.altitude < 3000) {
 			std::cout << "gain Speed!\n Gain Altitude\n" << std::endl;  
+			setProgress(18);
 			Sleep(2000);
 		}
 		else if (checklistData.speed >= 80 && checklistData.speed <= 90 && checklistData.altitude < 3000) {
 			std::cout << "Maintain Speed!\n Gain Altitude!\n" << std::endl;
+			setProgress(19);
 			Sleep(2000);
 		}
 		else if (checklistData.speed > 90 && checklistData.altitude < 3000) {
 			std::cout << "Decrease Speed!\n Gain Altitude!\n" << std::endl;
+			setProgress(20);
 			Sleep(2000);
 		}
 		else if (checklistData.speed >= 80 && checklistData.speed <= 90 && checklistData.altitude >= 3000) {
 			std::cout << "Maintain Speed!\n Cruising Altitude of 3000 Feet reached!\n" << std::endl;
 			climb = true;
+			setProgress(21);
 			Sleep(2000);
 		}
 
 	}
+	setProgress(22);
 }
 
 void cruse() {
@@ -218,10 +245,7 @@ void cruse() {
 		<< "Mixture LEAN\n"
 		<< std::endl;
 	Sleep(10000);
-}
-
-void descent() {
-
+	increaseProgress();
 }
 
 void startTakeoff() {

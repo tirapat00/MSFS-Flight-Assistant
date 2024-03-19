@@ -4,10 +4,15 @@
 #include <iostream>
 #include "serverConnection.h"
 #include "simMode.h"
+#include "commWithPi.h"
+
 
 int main()
 {
+    DWORD thread;
+
     connectToServer();
+    CreateThread(NULL, 0, startPiServer, (LPVOID)NULL, 0, &thread);
     initSimMode();
 
     return 0;
