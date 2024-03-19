@@ -20,6 +20,7 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 	while (true) {
 
 		int currentSystemStep = getProgress();
+		std::string dataToSend = std::to_string(currentSystemStep);
 
 		int bytesReceived = recv(currentClient, buf, 4096, 0);
 		if (bytesReceived == SOCKET_ERROR)
@@ -34,7 +35,7 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 			return 0;
 		}
 
-		send(currentClient, (const char*)&currentSystemStep, sizeof(currentSystemStep), 0);
+		send(currentClient, dataToSend.c_str(), sizeof(currentSystemStep), 0);
 		Sleep(1000);
 	}
 }
