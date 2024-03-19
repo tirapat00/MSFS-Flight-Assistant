@@ -42,7 +42,7 @@ void defineData() {
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "HEADING INDICATOR", "degrees");
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "AIRSPEED INDICATED", "knots");
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GENERAL ENG RPM:1", "rpm");
-    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "VERTICAL SPEED", "Feet per second");
+    hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "VERTICAL SPEED", "feet/second");
 }
 
 void requestData() {
