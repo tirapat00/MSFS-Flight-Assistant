@@ -111,7 +111,7 @@ void shutdown() {
 		<< std::endl;
 }
 
-void startLanding(){
+void startLanding() {
 	void beforeLanding();
 	void landing();
 	void afterLanding();
