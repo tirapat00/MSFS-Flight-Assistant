@@ -115,7 +115,7 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 		std::string dataToSend = std::to_string(currentSystemStep);
 
 		send(currentClient, dataToSend.c_str(), sizeof(currentSystemStep), 0);
-		Sleep(1000);
+		Sleep(2000);
 	}
 }
 
