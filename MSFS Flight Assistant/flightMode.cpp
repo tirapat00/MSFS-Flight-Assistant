@@ -54,5 +54,5 @@ void flightMode() {
 		<< " \n- Vertical Speed: " << calcData.verticalSpeed
 
 		<< std::flush;
-	setProgress(25);
+	setProgress(29);
 }

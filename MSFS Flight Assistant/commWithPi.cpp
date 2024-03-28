@@ -21,79 +21,89 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 	// create the buffer with space for the data
 	const unsigned int MAX_BUF_LENGTH = 4096;
 	vector<char> buffer(MAX_BUF_LENGTH);
-	string rcv;
+	int programProgress = 0;
+	int bytesReceived = 0;
 
 	char sendData[4096];
 
 	while (true) {
-
-		int bytesReceived = 0;
+			string rcv = "";
 			bytesReceived = recv(currentClient, &buffer[0], buffer.size(), 0);
+			std::cout << "Buffer Inhalt" << buffer[0] << std::endl;
 			// append string from buffer.
-			if (bytesReceived == -1) {
-				// error 
-			}
-			else {
-				rcv.append(buffer.cbegin(), buffer.cend());
-			}
+
+			rcv.append(buffer.cbegin(), buffer.cend());
+
+			std::cout << "rcv : " << rcv << std::endl;
+
 		// At this point we have the available data (which may not be a complete
 		// application level message). 
 
-			int programProgress = stoi(rcv);
+			try {
+				programProgress = stoi(rcv);
+				std::cout << "program Progress : " << programProgress << std::endl;
+			}
+			catch (const std::invalid_argument& e) {
+				std::cout << e.what() << "\n";
+			}
+
 
 			switch (programProgress) {
-			case '0' :
+			case 0 :
 				startScreen();
 				break;
-			case '1' :
+			case 1 :
 				cabin();
 				break;
-			case '2':
+			case 2 :
+				tailSection();
+				break;
+			case 3:
 				rightWing();
 				break;
-			case '3':
+			case 4:
 				nose();
 				break;
-			case '4':
+			case 5:
 				leftWing();
 				break;
-			case '5':
+			case 6:
 				preStartEngine();
 				break;
-			case '6':
+			case 7:
 				startEngine();
 				break;
-			case '9':
+			case 11:
 				taxi();
 				break;
-			case '11':
+			case 14:
 				preTakeoff();
 				break;
-			case '15':
+			case 18:
 				takeoff();
 				break;
-			case '19':
+			case 22:
 				climb();
 				break;
-			case '24':
+			case 28:
 				cruse();
 				break;
-			case '25':
+			case 29:
 				flightMode();
 				break;
-			case '26':
+			case 30:
 				beforeLanding();
 				break;
-			case '27':
+			case 31:
 				landing();
 				break;
-			case '31':
+			case 35:
 				afterLanding();
 				break;
-			case '32':
+			case 36:
 				shutdown();
 				break;
-			case '37':
+			case 41:
 				setFlagFinishTrue();
 				break;
 			default:

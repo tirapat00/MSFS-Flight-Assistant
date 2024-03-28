@@ -11,7 +11,7 @@
 simData currentData;
 
 void initSimMode() {
-	while (!getFlagFinish) {
+	while (getFlagFinish) {
 		requestDataFromServer();
 
 		currentData = getSimData();
