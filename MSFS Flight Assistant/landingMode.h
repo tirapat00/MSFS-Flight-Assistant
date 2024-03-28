@@ -1,2 +1,6 @@
 #pragma once
-void startLanding();
+
+void beforeLanding();
+void landing();
+void afterLanding();
+void shutdown();

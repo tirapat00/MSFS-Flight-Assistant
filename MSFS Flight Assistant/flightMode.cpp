@@ -3,6 +3,7 @@
 #include "dataStruct.h"
 #include "serverConnection.h"
 #include "flags.h"
+#include "calcStruct.h"
 
 char airClass;
 
@@ -33,4 +34,25 @@ void calculateAirspace(simData calcData) {
 		airClass = 'E';
 		std::cout << "\nCurrent Air Class " << airClass << std::endl;
 	}
+}
+
+void flightMode() {
+	requestDataFromServer();
+	simData calcData = getSimData();
+	calculateAirspace(calcData);
+	calculateFlightPath(calcData);
+
+	std::cout
+
+		<< "\rAltitude: " << calcData.altitude
+		<< " \n- Latitude: " << calcData.latitude
+		<< " \n- Longitude: " << calcData.longitude
+		<< " \n- Bearing to Waypoint: " << calcData.bearing
+		<< " \n- Heading: " << calcData.heading
+		<< " \n- Speed(knots): " << calcData.speed
+		<< " \n- RPM: " << calcData.RPM
+		<< " \n- Vertical Speed: " << calcData.verticalSpeed
+
+		<< std::flush;
+	setProgress(25);
 }

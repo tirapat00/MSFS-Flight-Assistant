@@ -11,16 +11,14 @@
 simData currentData;
 
 void initSimMode() {
-	while (getFlightChecklist() == false) {
+	while (!getFlagFinish) {
 		requestDataFromServer();
-		calculateAirspace(currentData);
-		calculateFlightPath(currentData);
 
 		currentData = getSimData();
 
 		std::cout
 
-			<< "\rAltitude: " << currentData.altitude
+			<< "\nAltitude: " << currentData.altitude
 			<< " \n- Latitude: " << currentData.latitude
 			<< " \n- Longitude: " << currentData.longitude
 			<< " \n- Bearing to Waypoint: " << currentData.bearing
@@ -30,42 +28,10 @@ void initSimMode() {
 			<< " \n- Vertical Speed: " << currentData.verticalSpeed
 
 			<< std::flush;
-		Sleep(500);
-		if (GetKeyState('C') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
-		{
-			increaseProgress();
-			setFlightChecklistTrue();
-		}
-	}
-	startChecklist();
-
-	while (getLanding() == false) {
-		requestDataFromServer();
-		currentData = getSimData();
 		calculateAirspace(currentData);
 		calculateFlightPath(currentData);
-
-		std::cout
-
-			<< "\rAltitude: " << currentData.altitude
-			<< " \n- Latitude: " << currentData.latitude
-			<< " \n- Longitude: " << currentData.longitude
-			<< " \n- Bearing to Waypoint: " << currentData.bearing
-			<< " \n- Heading: " << currentData.heading
-			<< " \n- Speed(knots): " << currentData.speed
-			<< " \n- RPM: " << currentData.RPM
-			<< " \n- Vertical Speed: " << currentData.verticalSpeed
-
-			<< std::flush;
-		Sleep(500);
-		if (GetKeyState('L') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
-		{
-			setLandingTrue();
-			increaseProgress();
-		}
+		Sleep(1000);
 	}
-	startLanding();
-	setProgress(34);
 	std::cout << "\n THANK YOU FOR USING OUR PILOT SUPPORT DEVICE" << std::endl;
 	Sleep(20000);
 }

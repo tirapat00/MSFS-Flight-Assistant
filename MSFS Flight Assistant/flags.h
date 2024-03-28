@@ -9,3 +9,5 @@ bool getFlight();
 void setFlightTrue();
 bool getExitFlight();
 void setExitFlightTrue();
+bool getFlagFinish();
+void setFlagFinishTrue();

@@ -5,6 +5,7 @@ bool flightCheckList = false;
 bool landing = false;
 bool flight = false;
 bool exitFlight = false;
+bool flagFinish = false;
 
 
 bool getFlightChecklist() {
@@ -37,4 +38,12 @@ bool getExitFlight() {
 
 void setExitFlightTrue() {
 	exitFlight = true;
+}
+
+bool getFlagFinish() {
+	return flagFinish;
+}
+
+void setFlagFinishTrue() {
+	flagFinish = true;
 }
