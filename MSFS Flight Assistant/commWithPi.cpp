@@ -96,6 +96,8 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 			case '37':
 				setFlagFinishTrue();
 				break;
+			default:
+				std::cout << "Number not known" << std::endl;
 			}
 
 
