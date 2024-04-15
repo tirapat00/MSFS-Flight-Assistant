@@ -7,8 +7,10 @@
 #include "landingMode.h"
 #include "flightMode.h"
 #include "flags.h"
+#include "convertToString.h"
 
 #pragma comment (lib, "ws2_32.lib")
+#define DEFAULT_BUFLEN 512
 
 using namespace std;
 

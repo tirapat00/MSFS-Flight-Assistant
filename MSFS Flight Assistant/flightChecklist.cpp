@@ -127,18 +127,19 @@ void taxi() {
 			std::cout << "BRAKE!\n" << std::endl;
 			requestDataFromServer();
 			checklistData = getSimData();
-			double brakeCheckSpeed = checklistData.speed;
-			std::cout << "Requested Data Speed: \n" << brakeCheckSpeed << std::endl;
-			Sleep(6000);
-			std::cout << "BRAKE checked!\n" << std::endl;
-			requestDataFromServer();
-			checklistData = getSimData();
-			double brakeCheckSpeed2 = checklistData.speed;
-			std::cout << "BRAKE check speed comparison! Speed 1 : " << brakeCheckSpeed << "Speed 2 : " << brakeCheckSpeed2 << std::endl;
-			if (brakeCheckSpeed2 < brakeCheckSpeed) {
-				std::cout << "BRAKE check speed comparison! Speed 1 : " << brakeCheckSpeed << "Speed 2 : " << brakeCheckSpeed2 << std::endl;
-				setProgress(13);
-			}
+			//double brakeCheckSpeed = checklistData.speed;
+			//std::cout << "Requested Data Speed: \n" << brakeCheckSpeed << std::endl;
+			//Sleep(6000);
+			//std::cout << "BRAKE checked!\n" << std::endl;
+			//requestDataFromServer();
+			//checklistData = getSimData();
+			//double brakeCheckSpeed2 = checklistData.speed;
+			//std::cout << "BRAKE check speed comparison! Speed 1 : " << brakeCheckSpeed << "Speed 2 : " << brakeCheckSpeed2 << std::endl;
+			//if (brakeCheckSpeed2 < brakeCheckSpeed) {
+			//	std::cout << "BRAKE check speed comparison! Speed 1 : " << brakeCheckSpeed << "Speed 2 : " << brakeCheckSpeed2 << std::endl;
+			//	setProgress(13);
+			//}
+			setProgress(13);
 		}
 }
 
