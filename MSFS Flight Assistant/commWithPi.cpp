@@ -7,8 +7,10 @@
 #include "landingMode.h"
 #include "flightMode.h"
 #include "flags.h"
+#include "convertToString.h"
 
 #pragma comment (lib, "ws2_32.lib")
+#define DEFAULT_BUFLEN 512
 
 using namespace std;
 
@@ -19,27 +21,27 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 	SOCKET currentClient = (SOCKET)lpParam;
 
 	// create the buffer with space for the data
-	const unsigned int MAX_BUF_LENGTH = 4096;
-	vector<char> buffer(MAX_BUF_LENGTH);
-	string rcv;
+	char recvbuf[DEFAULT_BUFLEN];
 
 	char sendData[4096];
+	string rcv;
 
 	while (true) {
 
 		int bytesReceived = 0;
-			bytesReceived = recv(currentClient, &buffer[0], buffer.size(), 0);
+		int programProgress;
+			bytesReceived = recv(currentClient, recvbuf, DEFAULT_BUFLEN, 0);
 			// append string from buffer.
-			if (bytesReceived == -1) {
-				// error 
-			}
-			else {
-				rcv.append(buffer.cbegin(), buffer.cend());
-			}
+
 		// At this point we have the available data (which may not be a complete
 		// application level message). 
-
-			int programProgress = stoi(rcv);
+			rcv = convertToString(recvbuf, sizeof(recvbuf));
+			try {
+				programProgress = stoi(rcv);
+			}
+			catch (const std::invalid_argument& e) {
+				std::cout << e.what() << "\n";
+			}
 
 			switch (programProgress) {
 			case '0' :

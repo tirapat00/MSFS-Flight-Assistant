@@ -42,6 +42,9 @@
     <ClCompile Include="calcStruct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="convertToString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="serverConnection.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="commWithPi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="convertToString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

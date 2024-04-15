@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="calcStruct.cpp" />
     <ClCompile Include="commWithPi.cpp" />
+    <ClCompile Include="convertToString.cpp" />
     <ClCompile Include="flags.cpp" />
     <ClCompile Include="flightChecklist.cpp" />
     <ClCompile Include="flightMode.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="calcStruct.h" />
     <ClInclude Include="commWithPi.h" />
+    <ClInclude Include="convertToString.h" />
     <ClInclude Include="dataStruct.h" />
     <ClInclude Include="flags.h" />
     <ClInclude Include="flightChecklist.h" />
