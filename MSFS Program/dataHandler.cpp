@@ -35,13 +35,22 @@ void defineData() {
     HRESULT hR;
     //#IMPORTANT: the request order must correspond with the declaration of the response struct
     //SimConnect_AddToDataDefinition takes : HANDLE, enum DEFINITION_ID, const char* UNIT, DATATYPE, Default is FLOAT64
+
+    //Indicated Altitude : Altitude of the Aircraft beginning at Mean Sea Level.  Unit : feet
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "INDICATED ALTITUDE", "feet");
+    //Plane Latitude : Latitude of the Aircraft  Unit : degrees
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "PLANE LATITUDE", "degrees");
+    //Plane Longitude : Longitude of the Aircraft  Unit : degrees
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "PLANE LONGITUDE", "degrees");
+    //Bearing of the Aircraft : direction to target outside of Aircraft  Unit : degrees
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GPS WP BEARING", "degrees");
+    //Heading of the Aircraft : direction the nose of the Aircraft is pointing to  Unit : degrees
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "HEADING INDICATOR", "degrees");
+    //Indicated Airspeed : Airspeed of the Aircraft  Unit : knots
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "AIRSPEED INDICATED", "knots");
+    //Engine RPM : RPM of the engine with the Index 1
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "GENERAL ENG RPM:1", "rpm");
+    //Vertical speed : climb rate or rate of descent of the Aircraft  Unit : feet per second
     hR = SimConnect_AddToDataDefinition(handle, DEFINITION_1, "VERTICAL SPEED", "feet/second");
 }
 
