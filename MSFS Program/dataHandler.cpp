@@ -74,6 +74,7 @@ void CALLBACK DispatchProc1(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext
         case REQUEST_1:
             //Cast the request data to a SimResponse (defined struct)
             SimResponse* pS = (SimResponse*)&pObjData->dwData;
+            pS->speed = pS->speed * 10;
 
             //use data here for now print to console
             std::cout

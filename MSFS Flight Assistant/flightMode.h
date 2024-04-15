@@ -4,3 +4,4 @@
 void calculateAirspace(simData calcData);
 void calculateFlightPath(simData calcData);
 void flightMode();
+char getAirclass();

@@ -96,7 +96,7 @@ void startEngine() {
 		checklistData = getSimData();
 		if (checklistData.RPM >= 800 && checklistData.RPM <= 1200) {
 			std::cout << "Hold RPM!\n" << checklistData.RPM << std::endl;
-			setProgress(8);
+			setProgress(10);
 			
 		}
 		else if (checklistData.RPM < 800) {
@@ -106,7 +106,7 @@ void startEngine() {
 		}
 		else if (checklistData.RPM > 1200) {
 			std::cout << "Engine RPM too high must be between 800-1200!\n" << std::endl;
-			setProgress(10);		
+			setProgress(8);		
 		}
 	std::cout
 		<< "Fuel Pump OFF\n"
@@ -158,14 +158,14 @@ void preTakeoff() {
 			requestDataFromServer();
 			checklistData = getSimData();
 			if (checklistData.RPM > 1700 && checklistData.RPM < 1800) {
-				setProgress(15);
+				setProgress(17);
 			}
 			else if (checklistData.RPM < 1700){
 				std::cout << "Bring RPM between 1700 - 1800\n" << std::endl;
 				setProgress(16);
 			}
 			else if (checklistData.RPM > 1800) {
-				setProgress(17);
+				setProgress(15);
 			}
 		std::cout
 			<< "Engine Instruments & Ammeter CHECK\n"
@@ -195,14 +195,14 @@ void takeoff() {
 		} 
 		else if (checklistData.RPM > 2500 && checklistData.speed > 75 && checklistData.altitude < 1000) {
 			std::cout << "Hold Speed and RPM!\n" << std::endl;
-			setProgress(19);
+			setProgress(21);
 		}
 		else if (checklistData.RPM < 2500 && checklistData.speed > 85) {
 			std::cout
 				<< "Throttle FULL OPEN\n"
 				<< "Climb Speed 75-85 MPH\n"
 				<< std::endl;
-			setProgress(21);
+			setProgress(19);
 		}
 }
 
@@ -237,6 +237,21 @@ void cruse() {
 		<< "Elevator ADJUST\n"
 		<< "Mixture LEAN\n"
 		<< std::endl;
+	requestDataFromServer();
+	simData cruiseData = getSimData();
+	calculateAirspace(cruiseData);
+	if (getAirclass() == 'C') {
+		setProgress(29);
+	}
+	else if (getAirclass() == 'D')
+	{
+		setProgress(30);
+	}
+	else if (getAirclass() == 'E')
+	{
+		setProgress(31);
+	}
+	
 }
 
 

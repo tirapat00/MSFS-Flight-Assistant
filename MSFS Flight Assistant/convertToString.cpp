@@ -10,7 +10,11 @@ string convertToString(char* a, int size)
     int i;
     string s = "";
     for (i = 0; i < size; i++) {
-        s = s + a[i];
+        if (a[i] != '.') {
+            s = s + a[i];
+        }
+        else if (a[i] == '.') {
+            return s;
+        }
     }
-    return s;
 }

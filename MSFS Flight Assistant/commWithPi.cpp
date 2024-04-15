@@ -31,17 +31,21 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 		int bytesReceived = 0;
 		int programProgress;
 			bytesReceived = recv(currentClient, recvbuf, DEFAULT_BUFLEN, 0);
+			std::cout << "BUFFER INHALT : " << recvbuf << "\n" << std::endl;
 			// append string from buffer.
 
 		// At this point we have the available data (which may not be a complete
 		// application level message). 
+			rcv = "";
 			rcv = convertToString(recvbuf, sizeof(recvbuf));
+			std::cout << "RCV INHALT : " << rcv << "\n" << std::endl;
 			try {
 				programProgress = stoi(rcv);
 			}
 			catch (const std::invalid_argument& e) {
 				std::cout << e.what() << "\n";
 			}
+			std::cout << "PROGRAM PROGRESS : " << programProgress << std::endl;
 
 
 			switch (programProgress) {
@@ -84,22 +88,22 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 			case 28:
 				cruse();
 				break;
-			case 29:
+			case 32:
 				flightMode();
 				break;
-			case 30:
+			case 33:
 				beforeLanding();
 				break;
-			case 31:
+			case 34:
 				landing();
 				break;
-			case 35:
+			case 38:
 				afterLanding();
 				break;
-			case 36:
+			case 39:
 				shutdown();
 				break;
-			case 41:
+			case 44:
 				setFlagFinishTrue();
 				break;
 			default:
@@ -108,9 +112,11 @@ DWORD WINAPI commWithPi(LPVOID lpParam) {
 
 
 		int currentSystemStep = getProgress();
-		std::string dataToSend = std::to_string(currentSystemStep);
+		std::string dataToSend = std::to_string(currentSystemStep)+'.';
+		std::cout << "MESSAGE SENT : " << dataToSend << std::endl;
 
 		send(currentClient, dataToSend.c_str(), sizeof(currentSystemStep), 0);
+		memset(recvbuf, 0, sizeof(recvbuf));
 		Sleep(1000);
 	}
 }

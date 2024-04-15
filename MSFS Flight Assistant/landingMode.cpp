@@ -25,7 +25,7 @@ void beforeLanding() {
 	else if (landingData.speed < 75) {
 		std::cout << "\n Flaps DOWN" << std::endl;
 	}
-	setProgress(30);
+	setProgress(33);
 }
 
 void landing() {
@@ -33,15 +33,15 @@ void landing() {
 		landingData = getSimData();
 		if (landingData.speed < 70) {
 			std::cout << "\n Speed too low" << std::endl;
-			setProgress(33);
+			setProgress(35);
 		}
 		else if (landingData.speed > 70 && landingData.speed < 80) {
 			std::cout << "\n Hold speed" << std::endl;
-			setProgress(32);
+			setProgress(37);
 		}
 		else if (landingData.speed > 80) {
 			std::cout << "\n Speed too high" << std::endl;
-			setProgress(34);
+			setProgress(36);
 		}
 		std::cout
 			<< "\n Wing Flaps AS DESIRED"
@@ -58,7 +58,7 @@ void afterLanding() {
 		<< "\n Transponder STANDBY"
 		<< "\n Lights AS REQUIRED"
 		<< std::endl;
-	setProgress(35);
+	setProgress(38);
 }
 
 void shutdown() {
@@ -70,11 +70,11 @@ void shutdown() {
 		<< std::endl;
 	if (landingData.RPM > 1000) {
 		std::cout << "\n Bring RPM under 1000 RPM" << std::endl;
-		setProgress(37);
+		setProgress(40);
 	}
 	else if (landingData.RPM < 1000) {
 		std::cout << "\n Hold RPM under 1000" << std::endl;
-		setProgress(38);
+		setProgress(41);
 	}
 	std::cout
 		<< "\n Mixture IDLE CUT-OFF"
@@ -85,10 +85,10 @@ void shutdown() {
 		landingData = getSimData();
 		if (landingData.RPM > 0) {
 			std::cout << "Master Switch OFF" << std::endl;
-			setProgress(39);
+			setProgress(42);
 		}
 		else if (landingData.RPM == 0) {
-			setProgress(40);
+			setProgress(43);
 	}
 	std::cout
 		<< "\n Control Lock INSTALL"
